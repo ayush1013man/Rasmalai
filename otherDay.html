@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      /* ===== COLOR THEME (ADDED ONLY) ===== */
+      :root {
+        --color-bg: linear-gradient(to top, #010329, #000005);
+        --pink: #ff43b6;
+        --purple: #ad2be0;
+        --cyan: #82fdff;
+        --glass: rgba(255, 255, 255, 0.08);
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        background-image: var(--color-bg);
+        font-family: "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+
+      /* ===== ORIGINAL CODE (UNCHANGED) ===== */
+
+      .single-container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        animation: fadeIn 1.2s ease forwards;
+      }
+
+      .single-title {
+        font-size: 3.2rem;
+        color: var(--cyan);
+        text-shadow: 0 0 25px rgba(130, 253, 255, 0.7);
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .single-button {
+        padding: 2rem 3rem;
+        font-size: 1.3rem;
+        text-align: center;
+        color: white;
+        border-radius: 2rem;
+        cursor: pointer;
+        position: relative;
+
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.12),
+          rgba(255, 255, 255, 0.02)
+        );
+
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        box-shadow:
+          0 0 30px rgba(255, 67, 182, 0.35),
+          inset 0 0 15px rgba(255, 255, 255, 0.08);
+
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+
+        animation: riseUp 1s ease backwards;
+      }
+
+      .single-button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(135deg, transparent, var(--pink));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .single-button:hover {
+        transform: translateY(-12px) scale(1.06);
+        box-shadow:
+          0 0 45px rgba(173, 43, 224, 0.6),
+          inset 0 0 18px rgba(255, 255, 255, 0.12);
+      }
+
+      .single-button:hover::before {
+        opacity: 0.3;
+      }
+
+      .single-button:active {
+        transform: scale(0.95);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes riseUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="single-container">
+      <h1 class="single-title">Prachi Ji</h1>
+
+      <div class="single-button">
+        chaliye futiye <br />
+        baad me aaiyega 💫
+      </div>
+    </div>
+  </body>
+</html>

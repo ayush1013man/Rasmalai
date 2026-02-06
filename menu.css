@@ -1,0 +1,152 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --color-bg: linear-gradient(to top,#010329,#000005);
+  --pink: #ff43b6;
+  --purple: #ad2be0;
+  --cyan: #82fdff;
+  --glass: rgba(255,255,255,0.08);
+}
+
+html, body {
+  height: 100%;
+  background-image: var(--color-bg);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* ================= CONTAINER ================= */
+
+.menu-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+/* ================= TITLE ================= */
+
+.menu-title {
+  font-size: 3rem;
+  color: var(--cyan);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 20px rgba(130,253,255,0.6);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ================= GRID ================= */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(140px, 1fr));
+  gap: 3rem;
+}
+
+/* ================= MENU ITEMS ================= */
+
+.menu-item {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, var(--glass), rgba(255,255,255,0.02));
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  position: relative;
+  transition: 
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+  animation: riseUp 0.8s ease backwards;
+}
+
+/* stagger animation */
+.menu-item:nth-child(1){ animation-delay: 0.2s; }
+.menu-item:nth-child(2){ animation-delay: 0.4s; }
+.menu-item:nth-child(3){ animation-delay: 0.6s; }
+.menu-item:nth-child(4){ animation-delay: 0.8s; }
+.menu-item:nth-child(5){ animation-delay: 1s; }
+.menu-item:nth-child(6){ animation-delay: 1.2s; }
+
+/* ================= HOVER MAGIC ================= */
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.menu-item:nth-child(odd)::before {
+  background: linear-gradient(135deg, transparent, var(--pink));
+}
+
+.menu-item:nth-child(even)::before {
+  background: linear-gradient(135deg, transparent, var(--purple));
+}
+
+.menu-item:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 35px rgba(255,67,182,0.4);
+}
+
+.menu-item:hover::before {
+  opacity: 0.25;
+}
+
+/* click feedback */
+.menu-item:active {
+  transform: scale(0.95);
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes riseUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .menu-title {
+    font-size: 2.2rem;
+  }
+}
